@@ -20,6 +20,10 @@ contract MyEpicGame is ERC721 {
     uint256 hp;
     uint256 maxHp;
     uint256 attackDamage;
+    uint256 fishing;
+    uint256 woodcutting;
+    uint256 mining;
+    uint256 smithing;
   }
 
   // The tokenId is the NFTs unique identifier, it's just a number that goes
@@ -40,6 +44,10 @@ contract MyEpicGame is ERC721 {
     string[] memory characterImageURIs,
     uint256[] memory characterHp,
     uint256[] memory characterAttackDmg,
+    uint256[] memory fishing,
+    uint256[] memory woodcutting,
+    uint256[] memory mining,
+    uint256[] memory smithing
   )
     // Below, you can also see I added some special identifier symbols for our NFT.
     // This is the name and symbol for our token, ex Ethereum and ETH. I just call mine
@@ -54,7 +62,11 @@ contract MyEpicGame is ERC721 {
           imageURI: characterImageURIs[i],
           hp: characterHp[i],
           maxHp: characterHp[i],
-          attackDamage: characterAttackDmg[i]
+          attackDamage: characterAttackDmg[i],
+          fishing: characterFishingLvl[i],
+          woodcutting: characterWoodcuttingLvl[i],
+          mining: characterMiningLvl[i],
+          smithing: characterSmithingLvl[i]
         })
       );
 
@@ -84,7 +96,11 @@ contract MyEpicGame is ERC721 {
       imageURI: defaultCharacters[_characterIndex].imageURI,
       hp: defaultCharacters[_characterIndex].hp,
       maxHp: defaultCharacters[_characterIndex].hp,
-      attackDamage: defaultCharacters[_characterIndex].attackDamage
+      attackDamage: defaultCharacters[_characterIndex].attackDamage,
+      fishing: defaultCharacters[_characterIndex].fishing,
+      woodcutting: defaultCharacters[_characterIndex].woodcutting,
+      mining: defaultCharacters[_characterIndex].mining,
+      smithing: defaultCharacters[_characterIndex].smithing
     });
     console.log("Minted NFT w/ tokenId %s and characterIndex %s", newItemId, _characterIndex);
 
@@ -101,6 +117,10 @@ contract MyEpicGame is ERC721 {
     string memory strHp = Strings.toString(charAttributes.hp);
     string memory strMaxHp = Strings.toString(charAttributes.maxHp);
     string memory strAttackDamage = Strings.toString(charAttributes.attackDamage);
+    string memory strFishing = Strings.toString(charAttributes.fishing);
+    string memory strWoodcutting = Strings.toString(charAttributes.woodcutting);
+    string memory strMining = Strings.toString(charAttributes.mining);
+    string memory strSmithing = Strings.toString(charAttributes.smithing);
 
     string memory json = Base64.encode(
       bytes(
@@ -110,7 +130,7 @@ contract MyEpicGame is ERC721 {
             charAttributes.name,
             " -- NFT #: ",
             Strings.toString(_tokenId),
-            '", "description": "This is an NFT that lets people play in the game Valorant NFT!", "image": "',
+            '", "description": "This is an NFT that lets people play in epic RPG NFT game", "image": "',
             charAttributes.imageURI,
             '", "attributes": [ { "trait_type": "Health Points", "value": ',
             strHp,
@@ -118,7 +138,15 @@ contract MyEpicGame is ERC721 {
             strMaxHp,
             '}, { "trait_type": "Attack Damage", "value": ',
             strAttackDamage,
-            "} ]}"
+            '}, { "trait_type": "Fishing Level", "value": ',
+            strFishing,
+            '}, { "trait_type": "Woodcutting Level", "value": ',
+            strWoodcutting,
+            '}, { "trait_type": "Mining Level", "value": ', 
+            strMining,
+            '}, { "trait_type": "Smithing Level", "value": ',
+            strSmithing,
+            "}]}"
           )
         )
       )
