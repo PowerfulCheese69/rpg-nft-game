@@ -1,10 +1,10 @@
 const main = async () => {
     const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
     const gameContract = await gameContractFactory.deploy(
-      ["Apple", "Orange", "Peach"],       // Names
-      ["https://i.imgur.com/XgHOt4Z.jpeg", // Images
-      "https://i.imgur.com/DNBm8an.jpeg", 
-      "https://i.imgur.com/elGdZLf.jpeg"],
+      ["ChiRho", "D.V.", "CCrypt"],       // Names
+      ["https://i.imgur.com/dYHQzeo.png", // Images
+      "https://i.imgur.com/kSLFDBd.gif", 
+      "https://i.imgur.com/hfLC3A8.png"],
       [69, 69, 69],                    // HP values
       [1, 1, 1],
       "Elon Musk",
