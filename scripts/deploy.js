@@ -6,11 +6,11 @@ const main = async () => {
       "https://i.imgur.com/kSLFDBd.gif", 
       "https://i.imgur.com/hfLC3A8.png"],
       [69, 69, 69],                    // HP values
-      [1, 1, 1],
-      "Elon Musk",
-      "https://i.imgur.com/AksR0tt.png",
-      10000,
-      1                       
+      [1, 1, 1],                        // Att values
+      [1,1,1],                          // Fishing values
+      [1,1,1],                          // Woodcutting values
+      [1,1,1],                          // Mining values
+      [1,1,1]                        // Smithing values               
     );
     
     await gameContract.deployed();
