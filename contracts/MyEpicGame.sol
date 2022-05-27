@@ -53,7 +53,7 @@ contract MyEpicGame is ERC721 {
     // This is the name and symbol for our token, ex Ethereum and ETH. I just call mine
     // Heroes and HERO. Remember, an NFT is just a token!
     ERC721("Heroes", "HERO")
-
+{
     for (uint256 i = 0; i < characterNames.length; i += 1) {
       defaultCharacters.push(
         CharacterAttributes({
