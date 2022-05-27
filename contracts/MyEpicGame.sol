@@ -44,10 +44,10 @@ contract MyEpicGame is ERC721 {
     string[] memory characterImageURIs,
     uint256[] memory characterHp,
     uint256[] memory characterAttackDmg,
-    uint256[] memory fishing,
-    uint256[] memory woodcutting,
-    uint256[] memory mining,
-    uint256[] memory smithing
+    uint256[] memory characterFishingLvl,
+    uint256[] memory characterWoodcuttingLvl,
+    uint256[] memory characterMiningLvl,
+    uint256[] memory characterSmithingLvl
   )
     // Below, you can also see I added some special identifier symbols for our NFT.
     // This is the name and symbol for our token, ex Ethereum and ETH. I just call mine
