@@ -1,51 +1,44 @@
 const main = async () => {
-    const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
-    const gameContract = await gameContractFactory.deploy(
-      ["Apple", "Orange", "Peach"],       // Names
-      ["https://i.imgur.com/XgHOt4Z.jpeg", // Images
-      "https://i.imgur.com/DNBm8an.jpeg", 
-      "https://i.imgur.com/elGdZLf.jpeg"],
-      [69, 69, 69],                    // HP values
-      [1, 1, 1],
-      "Elon Musk",
-      "https://i.imgur.com/AksR0tt.png",
-      10000,
-      1                       
-    );
-    
-    await gameContract.deployed();
-
-    let txn;
-    txn = await gameContract.mintCharacterNFT(2);
-    await txn.wait();
+  const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
+  const gameContract = await gameContractFactory.deploy(
+    ["ChiRho", "D.V.", "CCrypt"],       // Names
+    ["https://i.imgur.com/dYHQzeo.png", // Images
+    "https://i.imgur.com/kSLFDBd.gif", 
+    "https://i.imgur.com/hfLC3A8.png"],
+    [69, 69, 69],                    // HP values
+    [1, 1, 1],                        // Att values
+    [1,1,1],                          // Fishing values
+    [1,1,1],                          // Woodcutting values
+    [1,1,1],                          // Mining values
+    [1,1,1]                        // Smithing values               
+  );
   
-    txn = await gameContract.attackBoss();
-    await txn.wait();
+  await gameContract.deployed();
 
-    txn = await gameContract.attackBoss();
-    await txn.wait();
+  let txn;
 
 
-    console.log("Contract deployed to:", gameContract.address);
-    // We only have three characters.
-    // an NFT w/ the character at index 2 of our array.
-    txn = await gameContract.mintCharacterNFT(2);
-    await txn.wait();
 
-    // Get the value of the NFT's URI.
-    let returnedTokenUri = await gameContract.tokenURI(1);
-    console.log("Token URI:", returnedTokenUri);
-    };
+  console.log("Contract deployed to:", gameContract.address);
+  // We only have three characters.
+  // an NFT w/ the character at index 2 of our array.
 
-  
-  const runMain = async () => {
-    try {
-      await main();
-      process.exit(0);
-    } catch (error) {
-      console.log(error);
-      process.exit(1);
-    }
+    // await txn.wait();
+
+  // Get the value of the NFT's URI.
+  let returnedTokenUri = await gameContract.tokenURI();
+  console.log("Token URI:", returnedTokenUri);
   };
 
-  runMain();
+
+const runMain = async () => {
+  try {
+    await main();
+    process.exit(0);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
+
+runMain();
