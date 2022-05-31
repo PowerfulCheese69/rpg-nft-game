@@ -38,6 +38,7 @@ contract MyEpicGame is ERC721 {
   mapping(address => uint256) public nftHolders;
 
   event CharacterNFTMinted(address sender, uint256 tokenId, uint256 characterIndex);
+  event FishingLvlUp(uint256 oldFishingLvl, uint256 newFishingLvl);
 
   constructor(
     string[] memory characterNames,
@@ -173,6 +174,17 @@ contract MyEpicGame is ERC721 {
 
   function getAllDefaultCharacters() public view returns (CharacterAttributes[] memory) {
     return defaultCharacters;
+  }
+
+  function tryFishing() public {
+    uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
+    CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
+    uint256 currentFishingLvl = player.fishing;
+    uint256 newFishingLvl = currentFishingLvl+=1; 
+
+    console.log("\nPlayer w/ character %s has a fishing level of %s.", player.name, player.fishing);
+    emit FishingLvlUp(currentFishingLvl,newFishingLvl);
+
   }
 
 }
