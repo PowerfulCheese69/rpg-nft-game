@@ -182,6 +182,8 @@ contract MyEpicGame is ERC721 {
     uint256 currentFishingLvl = player.fishing;
     uint256 newFishingLvl = currentFishingLvl+=1; 
 
+    player.fishing +=1;
+
     console.log("\nPlayer w/ character %s has a fishing level of %s.", player.name, player.fishing);
     emit FishingLvlUp(currentFishingLvl,newFishingLvl);
 
