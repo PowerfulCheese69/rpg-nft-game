@@ -179,6 +179,7 @@ contract MyEpicGame is ERC721 {
   function tryFishing() public {
     uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
     CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
+    console.log("\nPlayer w/ character %s has a fishing level of %s.", player.name, player.fishing);
     uint256 currentFishingLvl = player.fishing;
     uint256 newFishingLvl = currentFishingLvl+=1; 
 
