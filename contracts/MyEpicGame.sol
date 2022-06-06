@@ -39,6 +39,9 @@ contract MyEpicGame is ERC721 {
 
   event CharacterNFTMinted(address sender, uint256 tokenId, uint256 characterIndex);
   event FishingLvlUp(uint256 oldFishingLvl, uint256 newFishingLvl);
+  event WoodCuttingLvlUp(uint256 oldWoodcuttingLvl, uint256 newWoodcuttingLvl);
+  event MiningLvlUp(uint256 oldMiningLvl, uint256 newMiningLvl);
+  event SmithingLvlUp(uint256 oldSmithingLvl, uint256 newSmithingLvl);
 
   constructor(
     string[] memory characterNames,
@@ -179,14 +182,48 @@ contract MyEpicGame is ERC721 {
   function tryFishing() public {
     uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
     CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
-    console.log("\nPlayer w/ character %s has a fishing level of %s.", player.name, player.fishing);
     uint256 currentFishingLvl = player.fishing;
     uint256 newFishingLvl = currentFishingLvl+=1; 
 
     player.fishing = player.fishing + 1;
 
-    console.log("\nPlayer w/ character %s has a fishing level of %s.", player.name, player.fishing);
     emit FishingLvlUp(currentFishingLvl,newFishingLvl);
+
+  }
+
+    function tryWoodCutting() public {
+    uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
+    CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
+    uint256 currentWoodCuttingLvl = player.woodcutting;
+    uint256 newWoodCuttingLvl = currentWoodCuttingLvl+=1; 
+
+    player.woodcutting = player.woodcutting + 1;
+
+    emit WoodCuttingLvlUp(currentWoodCuttingLvl,newWoodCuttingLvl);
+
+  }
+
+    function tryMining() public {
+    uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
+    CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
+    uint256 currentMiningLvl = player.mining;
+    uint256 newMiningLvl = currentMiningLvl+=1; 
+
+    player.mining = player.mining + 1;
+
+    emit MiningLvlUp(currentMiningLvl,newMiningLvl);
+
+  }
+
+    function trySmithing() public {
+    uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
+    CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
+    uint256 currentSmithingLvl = player.smithing;
+    uint256 newSmithingLvl = currentSmithingLvl+=1; 
+
+    player.smithing = player.smithing + 1;
+
+    emit SmithingLvlUp(currentSmithingLvl,newSmithingLvl);
 
   }
 
