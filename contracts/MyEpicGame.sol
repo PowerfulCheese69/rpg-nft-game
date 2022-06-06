@@ -191,11 +191,11 @@ contract MyEpicGame is ERC721 {
 
   }
 
-    function tryWoodCutting() public {
+    function tryWoodcutting() public {
     uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
     CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
-    uint256 currentWoodCuttingLvl = player.woodcutting;
-    uint256 newWoodCuttingLvl = currentWoodCuttingLvl+=1; 
+    uint256 currentWoodcuttingLvl = player.woodcutting;
+    uint256 newWoodcuttingLvl = currentWoodcuttingLvl+=1; 
 
     player.woodcutting = player.woodcutting + 1;
 
