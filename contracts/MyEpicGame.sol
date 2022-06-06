@@ -199,7 +199,7 @@ contract MyEpicGame is ERC721 {
 
     player.woodcutting = player.woodcutting + 1;
 
-    emit WoodCuttingLvlUp(currentWoodCuttingLvl,newWoodCuttingLvl);
+    emit WoodCuttingLvlUp(currentWoodcuttingLvl,newWoodcuttingLvl);
 
   }
 
