@@ -20,7 +20,7 @@ interface ISkillRewards {
 
 // Our contract inherits from ERC721, which is the standard NFT contract!
 contract MyEpicGame is ERC721 {
-  ISkillRewards skillRewards = ISkillRewards (0x88d2b878148126F3480337181B17336b880d9C2E);
+  ISkillRewards skillRewards = ISkillRewards (0xa68953206F361a140cB85021F0d731C319767639);
   struct CharacterAttributes {
     uint256 characterIndex;
     string name;
