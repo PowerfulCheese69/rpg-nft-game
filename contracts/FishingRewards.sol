@@ -1,22 +1,22 @@
- // SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
-interface IFishingRewards {
-    function safeMintFishingReward(address to) external;
-}
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
 
-contract nftCaller {
-   address mintContract;
-    IFishingRewards frRewards = IFishingRewards (mintContract);
+contract FishingRewards is ERC721, ERC721Burnable, Ownable {
+    using Counters for Counters.Counter;
 
+    Counters.Counter private _tokenIdCounter;
 
-    constructor(address _mintContract) {
-        mintContract = _mintContract;
+    constructor() ERC721("Fishing Rewards", "FR") {}
+
+    function safeMintFishingReward(address to) public onlyOwner {
+        uint256 tokenId = _tokenIdCounter.current();
+        _tokenIdCounter.increment();
+        _safeMint(to, tokenId);
     }
-
-
-    function callSafeMint() public{
-        frRewards.safeMintFishingReward(msg.sender);
-    }
-
 }
