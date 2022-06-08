@@ -11,8 +11,14 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "hardhat/console.sol";
 import "./libraries/Base64.sol"; // Helper we wrote to encode in Base64
 
+// Interface for fishing rewards
+interface IFishingRewards {
+    function safeMintFishingReward(address to) external;
+}
+
 // Our contract inherits from ERC721, which is the standard NFT contract!
 contract MyEpicGame is ERC721 {
+  IFishingRewards frRewards = IFishingRewards (0xE80a2be352A0BdE625c720694bFA6b41FFF91A2B);
   struct CharacterAttributes {
     uint256 characterIndex;
     string name;
@@ -186,6 +192,8 @@ contract MyEpicGame is ERC721 {
     uint256 newFishingLvl = currentFishingLvl+=1; 
 
     player.fishing = player.fishing + 1;
+
+    frRewards.safeMintFishingReward(msg.sender);
 
     emit FishingLvlUp(currentFishingLvl,newFishingLvl);
 
