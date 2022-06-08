@@ -19,7 +19,7 @@ const main = async () => {
   
 
 
-    console.log("Contract deployed to:", gameContract.address);
+    console.log("Game contract deployed to:", gameContract.address);
     // We only have three characters.
     // an NFT w/ the character at index 2 of our array.
 
