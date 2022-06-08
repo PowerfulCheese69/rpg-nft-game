@@ -31,7 +31,7 @@ contract SkillRewards is ERC721, ERC721URIStorage, Ownable {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
-        _setTokenURI(tokenId, "https://gateway.pinata.cloud/ipfs/QmWXPwEe1mnA2nMHgmt9tDSzJuEUaUkznqhcfGG2UwGFMv");
+        _setTokenURI(tokenId, "https://gateway.pinata.cloud/ipfs/QmSBmgBaFxz1xqZN3QUYpzmd76EaSPwS3U6ASp5SnQEL7g");
     }
 
     // The following functions are overrides required by Solidity.
