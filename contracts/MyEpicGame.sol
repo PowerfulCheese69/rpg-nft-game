@@ -12,13 +12,15 @@ import "hardhat/console.sol";
 import "./libraries/Base64.sol"; // Helper we wrote to encode in Base64
 
 // Interface for fishing rewards
-interface IFishingRewards {
+interface ISkillRewards {
     function safeMintFishingReward(address to) external;
+    function safeMintWoodcuttingReward(address to) external;
+    function safeMintMiningReward(address to) external;
 }
 
 // Our contract inherits from ERC721, which is the standard NFT contract!
 contract MyEpicGame is ERC721 {
-  IFishingRewards frRewards = IFishingRewards (0xE80a2be352A0BdE625c720694bFA6b41FFF91A2B);
+  ISkillRewards skillRewards = ISkillRewards (0x88d2b878148126F3480337181B17336b880d9C2E);
   struct CharacterAttributes {
     uint256 characterIndex;
     string name;
@@ -193,7 +195,7 @@ contract MyEpicGame is ERC721 {
 
     player.fishing = player.fishing + 1;
 
-    frRewards.safeMintFishingReward(msg.sender);
+    skillRewards.safeMintFishingReward(msg.sender);
 
     emit FishingLvlUp(currentFishingLvl,newFishingLvl);
 
@@ -207,6 +209,8 @@ contract MyEpicGame is ERC721 {
 
     player.woodcutting = player.woodcutting + 1;
 
+    skillRewards.safeMintWoodcuttingReward(msg.sender);
+
     emit WoodCuttingLvlUp(currentWoodcuttingLvl,newWoodcuttingLvl);
 
   }
@@ -218,6 +222,8 @@ contract MyEpicGame is ERC721 {
     uint256 newMiningLvl = currentMiningLvl+=1; 
 
     player.mining = player.mining + 1;
+
+    skillRewards.safeMintMiningReward(msg.sender);
 
     emit MiningLvlUp(currentMiningLvl,newMiningLvl);
 
