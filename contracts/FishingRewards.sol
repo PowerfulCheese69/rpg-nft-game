@@ -2,13 +2,11 @@
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-
-contract FishingRewards is ERC721, ERC721Burnable, Ownable {
+contract MyToken is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
@@ -19,9 +17,12 @@ contract FishingRewards is ERC721, ERC721Burnable, Ownable {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
+        _setTokenURI(tokenId, "https://gateway.pinata.cloud/ipfs/Qme6czNiXQoSdnTEnxoQF8MVLh384c1nMrYHKLMD9Ks4VQ");
     }
 
- function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
+    // The following functions are overrides required by Solidity.
+
+    function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
         super._burn(tokenId);
     }
 
@@ -33,5 +34,4 @@ contract FishingRewards is ERC721, ERC721Burnable, Ownable {
     {
         return super.tokenURI(tokenId);
     }
-
 }
